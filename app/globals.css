@@ -1,0 +1,539 @@
+/* Fonts are loaded via next/font/google in layout.tsx */
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* ── Design tokens ───────────────────────────────────────── */
+:root {
+  --ink: #070b16;
+  --ink-2: #111827;
+  --ink-3: #1a2235;
+  --line: #1e2d45;
+  --cyan: #00c2ff;
+  --purple: #7c3aed;
+  --green: #10b981;
+  --amber: #f59e0b;
+  --white: #f1f5f9;
+  --muted: #64748b;
+  --dim: #94a3b8;
+  --grad: linear-gradient(90deg, #00c2ff, #7c3aed);
+  --nav-h: 72px;
+  --r: 14px;
+  --r-sm: 8px;
+  --ease: cubic-bezier(0.4, 0, 0.2, 1);
+
+  /* shadcn variable bridge */
+  --background: 224 59% 6%;
+  --foreground: 210 40% 95%;
+  --card: 220 47% 11%;
+  --card-foreground: 210 40% 95%;
+  --border: 218 41% 19%;
+  --ring: 195 100% 50%;
+  --radius: 0.875rem;
+}
+
+/* ── Section backgrounds ─────────────────────────────────── */
+.section-alt {
+  background: #0b101c;
+}
+
+/* ── Hide scrollbar (cert mobile row) ───────────────────── */
+.no-scrollbar {
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+}
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+
+/* ── Base ────────────────────────────────────────────────── */
+@layer base {
+  *,
+  *::before,
+  *::after {
+    box-sizing: border-box;
+  }
+  html {
+    scroll-behavior: smooth;
+  }
+  body {
+    @apply bg-ink text-[#F1F5F9] antialiased overflow-x-hidden;
+    font-family: var(--font-inter, "Inter", sans-serif);
+    line-height: 1.65;
+  }
+  h1,
+  h2,
+  h3 {
+    font-family: var(--font-grotesk, "Space Grotesk", sans-serif);
+    @apply tracking-tight leading-tight;
+  }
+}
+
+/* ── Custom keyframes not covered by Tailwind config ─────── */
+@keyframes orbDrift {
+  from {
+    transform: translate(0, 0) scale(1);
+  }
+  to {
+    transform: translate(30px, 40px) scale(1.08);
+  }
+}
+@keyframes pulseDot {
+  0% {
+    box-shadow: 0 0 0 0 rgba(16, 185, 129, 0.5);
+  }
+  70% {
+    box-shadow: 0 0 0 8px rgba(16, 185, 129, 0);
+  }
+  100% {
+    box-shadow: 0 0 0 0 rgba(16, 185, 129, 0);
+  }
+}
+@keyframes float {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-10px);
+  }
+}
+@keyframes marquee {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-50%);
+  }
+}
+@keyframes blink {
+  0%,
+  100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0;
+  }
+}
+@keyframes wordIn {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+@keyframes toolIn {
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+@keyframes navIn {
+  from {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+/* ── Gradient text helper ─────────────────────────────────── */
+.grad-text {
+  background: var(--grad);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* ── Section label ─────────────────────────────────────────── */
+.section-label {
+  @apply text-[11px] font-semibold uppercase tracking-[.12em] text-cyan font-mono mb-5;
+}
+
+/* ── Canvas layers ─────────────────────────────────────────── */
+#cv-particles,
+#cv-matrix {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 0;
+}
+#cv-particles {
+  opacity: 0.5;
+}
+#cv-matrix {
+  opacity: 0.018;
+  mix-blend-mode: screen;
+}
+
+/* ── Orbs ──────────────────────────────────────────────────── */
+.orb {
+  position: fixed;
+  border-radius: 50%;
+  filter: blur(100px);
+  pointer-events: none;
+  z-index: 0;
+  opacity: 0.45;
+  animation: orbDrift 22s ease-in-out infinite alternate;
+}
+.orb-1 {
+  width: 600px;
+  height: 600px;
+  background: radial-gradient(circle, rgba(0, 194, 255, 0.18), transparent 70%);
+  top: -200px;
+  right: -150px;
+  animation-duration: 22s;
+}
+.orb-2 {
+  width: 500px;
+  height: 500px;
+  background: radial-gradient(
+    circle,
+    rgba(124, 58, 237, 0.15),
+    transparent 70%
+  );
+  bottom: 10%;
+  left: -100px;
+  animation-duration: 26s;
+  animation-delay: -8s;
+}
+.orb-3 {
+  width: 350px;
+  height: 350px;
+  background: radial-gradient(circle, rgba(0, 194, 255, 0.1), transparent 70%);
+  top: 50%;
+  right: 20%;
+  animation-duration: 30s;
+  animation-delay: -14s;
+}
+
+/* ── Noise ─────────────────────────────────────────────────── */
+.noise {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 0;
+  opacity: 0.025;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='1'/%3E%3C/svg%3E");
+}
+
+/* ── Scroll reveal ─────────────────────────────────────────── */
+.rv {
+  opacity: 0;
+  transform: translateY(28px);
+  transition:
+    opacity 0.65s var(--ease),
+    transform 0.65s var(--ease);
+  transition-delay: calc(var(--d, 0) * 0.08s);
+}
+.rv.in {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* ── Experience card alternating slide ──────────────────── */
+.xp-left {
+  transform: translate(translateY(28px));
+}
+.rv.xp-left {
+  transform: translateX(-24px) translateY(0);
+}
+.rv.xp-right {
+  transform: translateX(24px) translateY(0);
+}
+.rv.xp-left.in,
+.rv.xp-right.in {
+  opacity: 1;
+  transform: translate(0);
+}
+
+/* ── Word stagger ──────────────────────────────────────────── */
+.h1-word {
+  display: inline-block;
+  margin-right: 0.18em;
+  opacity: 0;
+  transform: translateY(105%);
+}
+.h1-word.in {
+  animation: wordIn 0.65s var(--ease) forwards;
+  animation-delay: calc(var(--wi, 0) * 0.06s);
+}
+.line-wrap {
+  display: block;
+  overflow: hidden;
+}
+
+/* ── Tool icon stagger ─────────────────────────────────────── */
+.tool-icon-wrap {
+  opacity: 0;
+  transform: translateX(-18px);
+}
+.tool-icon-wrap.in {
+  animation: toolIn 0.45s var(--ease) forwards;
+  animation-delay: calc(var(--ti, 0) * 0.08s + 0.4s);
+}
+
+/* ── Hero grid overlay ─────────────────────────────────────── */
+.hero-grid {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  z-index: 0;
+  background-image:
+    linear-gradient(rgba(0, 194, 255, 0.03) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(0, 194, 255, 0.03) 1px, transparent 1px);
+  background-size: 44px 44px;
+}
+
+/* ── Contact diagonal grid ─────────────────────────────────── */
+.contact-diag {
+  background-image:
+    linear-gradient(rgba(0, 194, 255, 0.025) 1px, transparent 1px),
+    linear-gradient(60deg, rgba(0, 194, 255, 0.025) 1px, transparent 1px);
+  background-size: 52px 52px;
+}
+
+/* ── Terminal styles ───────────────────────────────────────── */
+.terminal-card {
+  background: #111827;
+  border: 1px solid rgba(0, 194, 255, 0.3);
+  border-radius: 16px;
+  box-shadow:
+    0 0 60px rgba(0, 194, 255, 0.08),
+    0 32px 80px rgba(0, 0, 0, 0.5);
+  overflow: hidden;
+  animation: float 4s ease-in-out infinite;
+  position: relative;
+  z-index: 1;
+}
+.term-line {
+  opacity: 0;
+  transform: translateX(-8px);
+  transition:
+    opacity 0.3s,
+    transform 0.3s;
+}
+.term-line.in {
+  opacity: 1;
+  transform: translateX(0);
+}
+.term-progress {
+  height: 4px;
+  border-radius: 999px;
+  background: var(--line);
+  overflow: hidden;
+}
+.term-progress-fill {
+  height: 100%;
+  width: 0;
+  border-radius: 999px;
+  background: var(--grad);
+  transition: width 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* ── Pipeline connector (SVG dash-offset) ──────────────────── */
+.pc-track {
+  stroke: #1e2d45;
+  stroke-width: 1.5;
+  stroke-dasharray: 4 4;
+}
+.pc-dash {
+  stroke: #00c2ff;
+  stroke-width: 1.5;
+  stroke-dasharray: 48;
+  stroke-dashoffset: 48;
+  transition: stroke-dashoffset 0.5s var(--ease);
+  filter: drop-shadow(0 0 4px rgba(0, 194, 255, 0.6));
+}
+.pc-lit .pc-dash {
+  stroke-dashoffset: 0;
+}
+
+/* ── Pipeline node ──────────────────────────────────────────── */
+.pipe-node-icon {
+  width: 52px;
+  height: 52px;
+  border-radius: 14px;
+  background: var(--ink-3);
+  border: 1px solid var(--line);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--muted);
+  transition: all 0.4s var(--ease);
+}
+.pipe-node-icon.lit {
+  border-color: var(--cyan);
+  background: rgba(0, 194, 255, 0.1);
+  color: var(--cyan);
+  box-shadow: 0 0 22px rgba(0, 194, 255, 0.25);
+}
+.pipe-node-icon.pass-lit {
+  border-color: var(--green);
+  background: rgba(16, 185, 129, 0.1);
+  color: var(--green);
+  box-shadow: 0 0 22px rgba(16, 185, 129, 0.25);
+}
+
+/* ── Cert holographic shimmer ──────────────────────────────── */
+.cert-holo {
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  pointer-events: none;
+  background: linear-gradient(
+    110deg,
+    transparent 35%,
+    rgba(0, 194, 255, 0.07) 50%,
+    rgba(124, 58, 237, 0.07) 58%,
+    transparent 70%
+  );
+  background-size: 300% 100%;
+  background-position: 200% 0;
+  transition: background-position 0.6s ease;
+}
+.cert-card:hover .cert-holo {
+  background-position: -100% 0;
+}
+
+/* ── Project card top-border hover ─────────────────────────── */
+.proj-card::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 2px;
+  background: var(--grad);
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 0.3s var(--ease);
+}
+.proj-card:hover::before {
+  transform: scaleX(1);
+}
+
+/* ── Skill dots ─────────────────────────────────────────────── */
+.skill-dot {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: var(--line);
+  flex-shrink: 0;
+}
+.skill-dot.on {
+  background: var(--cyan);
+  box-shadow: 0 0 5px rgba(0, 194, 255, 0.5);
+}
+
+/* ── Experience timeline SVG ────────────────────────────────── */
+.xp-svg-track {
+  stroke: #1e2d45;
+  stroke-width: 2;
+}
+.xp-svg-fill {
+  stroke: #00c2ff;
+  stroke-width: 2;
+  filter: drop-shadow(0 0 6px rgba(0, 194, 255, 0.5));
+}
+
+/* ── Code comment ───────────────────────────────────────────── */
+.code-comment {
+  display: inline-flex;
+  gap: 4px;
+  background: rgba(0, 194, 255, 0.04);
+  border-left: 2px solid rgba(0, 194, 255, 0.4);
+  padding: 12px 18px;
+  border-radius: 0 8px 8px 0;
+  font-family: "JetBrains Mono", monospace;
+  font-size: 13px;
+  margin-block: 24px;
+}
+.cc-slash {
+  color: rgba(0, 194, 255, 0.5);
+}
+.cc-text {
+  color: rgba(0, 194, 255, 0.8);
+}
+
+/* ── Syntax highlight (skills codeline) ─────────────────────── */
+.sc-kw {
+  color: #7c3aed;
+}
+.sc-var {
+  color: #00c2ff;
+}
+.sc-op {
+  color: #64748b;
+}
+.sc-key {
+  color: #10b981;
+}
+.sc-str {
+  color: #f59e0b;
+}
+.sc-brace {
+  color: #f1f5f9;
+}
+
+/* ── Footer glow line ───────────────────────────────────────── */
+.footer-glow {
+  height: 1px;
+  background: var(--grad);
+  opacity: 0.6;
+  box-shadow: 0 0 12px 1px rgba(0, 194, 255, 0.35);
+}
+
+/* ── Marquee ─────────────────────────────────────────────────── */
+.marquee-track {
+  display: inline-flex;
+  white-space: nowrap;
+  gap: 32px;
+  animation: marquee 30s linear infinite;
+}
+.marquee-wrap {
+  overflow: hidden;
+  -webkit-mask-image: linear-gradient(
+    90deg,
+    transparent,
+    black 10%,
+    black 90%,
+    transparent
+  );
+  mask-image: linear-gradient(
+    90deg,
+    transparent,
+    black 10%,
+    black 90%,
+    transparent
+  );
+}
+
+/* ── Blinking cursor ─────────────────────────────────────────── */
+.blink-cursor {
+  animation: blink 1s step-end infinite;
+}
+
+/* ── animate-float helper (Tailwind registers it as animate-float) ── */
+.animate-float {
+  animation: float 4s ease-in-out infinite;
+}
+
+/* ── Accessibility: reduced motion ──────────────────────────── */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+  .rv,
+  .h1-word,
+  .tool-icon-wrap {
+    opacity: 1;
+    transform: none;
+  }
+}
