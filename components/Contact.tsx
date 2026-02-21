@@ -68,7 +68,7 @@ export default function Contact() {
   };
 
   const copyEmail = async () => {
-    await navigator.clipboard.writeText("khadijatmuh@gmail.com");
+    await navigator.clipboard.writeText("muhammadkhadijato@gmail.com");
     setCopiedEmail(true);
     setTimeout(() => setCopiedEmail(false), 2000);
   };
@@ -161,8 +161,8 @@ export default function Contact() {
               {
                 icon: Mail,
                 label: "Email",
-                value: "khadijatmuh@gmail.com",
-                href: "mailto:khadijatmuh@gmail.com",
+                value: "muhammadkhadijato@gmail.com",
+                href: "mailto:muhammadkhadijato@gmail.com",
                 action: { icon: Copy, fn: copyEmail, done: copiedEmail },
               },
               {
@@ -174,8 +174,8 @@ export default function Contact() {
               {
                 icon: Github,
                 label: "GitHub",
-                value: "github.com/khadijatmuh",
-                href: "https://github.com/khadijatmuh",
+                value: "github.com/myekini",
+                href: "https://github.com/myekini",
               },
               {
                 icon: MapPin,

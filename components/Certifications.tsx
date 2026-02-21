@@ -1,49 +1,34 @@
 "use client";
 import { useEffect, useRef } from "react";
-import { ShieldCheck, Zap, Code2, Cloud } from "lucide-react";
+import { ShieldCheck, Zap, Award } from "lucide-react";
 
 const CERTS = [
   {
     icon: ShieldCheck,
-    name: "ISTQB Certified Tester Foundation Level",
-    org: "ISTQB — International Software Testing Qualifications Board",
-    year: "In Progress · 2025",
-    verify: null,
+    name: "Foundations of Software Testing and Validation",
+    org: "University of Leeds",
+    year: "2024",
+    detail:
+      "Software Testing, Functional & Non-functional Testing, SDLC, STLC, Test Case Development.",
+    verify: "https://www.coursera.org",
   },
   {
     icon: Zap,
-    name: "Cypress End-to-End Testing",
-    org: "Udemy · Bondar Academy",
+    name: "Automation Software Testing Certification",
+    org: "Trevotech Academy",
     year: "2024",
-    verify: "https://udemy.com",
-  },
-  {
-    icon: Code2,
-    name: "API Testing with Postman",
-    org: "Coursera · Meta Developer Track",
-    year: "2024",
-    verify: "https://coursera.org",
-  },
-  {
-    icon: Cloud,
-    name: "GitHub Actions CI/CD",
-    org: "GitHub Learning Lab",
-    year: "2024",
-    verify: "https://github.com",
-  },
-  {
-    icon: ShieldCheck,
-    name: "Software Testing Fundamentals",
-    org: "ALX Africa",
-    year: "2023",
+    detail:
+      "Cypress, BDD (Cucumber + Gherkin), CI/CD pipelines, API and Performance Testing, Test Optimisation.",
     verify: null,
   },
   {
-    icon: Zap,
-    name: "JMeter Performance Testing",
-    org: "Udemy",
+    icon: Award,
+    name: "HNG Finalist Certificate",
+    org: "HNG13 Internship",
     year: "2024",
-    verify: "https://udemy.com",
+    detail:
+      "Test plan execution, API & functional tests on Storytime4kids app, bug tracking in ClickUp, Newman CLI automation.",
+    verify: null,
   },
 ];
 
@@ -68,38 +53,42 @@ export default function Certifications() {
   }, []);
 
   return (
-    <section id="certifications" ref={sectionRef} className="py-24">
-      <div className="max-w-[1200px] mx-auto px-10">
+    <section id="certifications" ref={sectionRef} className="section-alt py-24">
+      <div className="max-w-[1200px] mx-auto px-6 md:px-10">
         <p className="section-label rv">Certifications</p>
         <h2
-          className="font-grotesk font-extrabold text-[clamp(32px,4vw,48px)] text-[#F1F5F9] mb-14 rv"
+          className="font-grotesk font-extrabold text-[clamp(32px,4vw,48px)] section-heading mb-14 rv"
           style={{ "--d": 1 } as React.CSSProperties}
         >
-          <em className="grad-text not-italic">Credentials</em>
+          My <em className="grad-text not-italic">Credentials</em>
         </h2>
 
-        {/* Desktop: 3-col grid · Mobile: horizontal scroll */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5 max-md:flex max-md:overflow-x-auto max-md:pb-4 max-md:snap-x max-md:snap-mandatory max-md:gap-4 no-scrollbar">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
           {CERTS.map((cert, i) => (
             <div
               key={cert.name}
-              className="rv cert-card relative bg-ink-2 border border-line rounded-[var(--r)] p-8 flex flex-col gap-4 overflow-hidden hover:-translate-y-1.5 hover:border-[rgba(0,194,255,.4)] hover:shadow-[0_20px_60px_rgba(0,0,0,.35)] transition-all duration-300 max-md:min-w-[300px] max-md:snap-center"
+              className="rv cert-card relative card-bg border border-[var(--color-line)] rounded-[var(--r)] p-8 flex flex-col gap-4 overflow-hidden hover:-translate-y-1.5 hover:border-[rgba(0,194,255,.4)] hover:shadow-[0_20px_60px_rgba(0,0,0,.2)] transition-all duration-300"
               style={{ "--d": i + 2 } as React.CSSProperties}
             >
-              {/* Holographic shimmer overlay */}
+              {/* Holographic shimmer */}
               <div className="cert-holo" aria-hidden="true" />
 
-              <div className="w-[52px] h-[52px] rounded-[13px] bg-[rgba(0,194,255,.07)] border border-[rgba(0,194,255,.18)] flex items-center justify-center text-cyan">
+              <div className="w-[52px] h-[52px] rounded-[13px] bg-[rgba(0,194,255,.07)] border border-[rgba(0,194,255,.18)] flex items-center justify-center text-cyan flex-shrink-0">
                 <cert.icon size={24} />
               </div>
 
-              <div>
-                <h3 className="font-grotesk text-[17px] font-bold text-[#F1F5F9] mb-1">
+              <div className="flex flex-col gap-1 flex-1">
+                <h3 className="font-grotesk text-[17px] font-bold section-heading leading-snug">
                   {cert.name}
                 </h3>
-                <p className="text-[13px] text-dim leading-snug">{cert.org}</p>
-                <p className="font-mono text-[12px] text-muted mt-2">
+                <p className="text-[13px] font-semibold text-cyan mt-1">
+                  {cert.org}
+                </p>
+                <p className="font-mono text-[12px] text-[var(--color-muted)]">
                   {cert.year}
+                </p>
+                <p className="text-[13px] text-[var(--color-dim)] leading-snug mt-2">
+                  {cert.detail}
                 </p>
               </div>
 
@@ -113,12 +102,44 @@ export default function Certifications() {
                   Verify →
                 </a>
               ) : (
-                <span className="text-[13px] text-muted mt-auto italic">
-                  Pending verification
+                <span className="text-[13px] text-[var(--color-muted)] mt-auto italic">
+                  Certificate issued · verification link pending
                 </span>
               )}
             </div>
           ))}
+        </div>
+
+        {/* Education */}
+        <div className="mt-16 rv" style={{ "--d": 5 } as React.CSSProperties}>
+          <p className="section-label mb-6">Education</p>
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
+            {[
+              {
+                degree: "B.Sc. Human Physiology",
+                school: "University of Ilorin",
+                year: "Graduated 2017",
+              },
+              {
+                degree: "Postgraduate Diploma in Education (Natural Sciences)",
+                school: "Lagos State University, Ojo",
+                year: "Graduated 2023",
+              },
+            ].map((edu) => (
+              <div
+                key={edu.degree}
+                className="card-bg border border-[var(--color-line)] rounded-[var(--r)] p-7 hover:border-[rgba(0,194,255,.25)] transition-all duration-200"
+              >
+                <h3 className="font-grotesk text-[17px] font-bold section-heading mb-1">
+                  {edu.degree}
+                </h3>
+                <p className="text-sm text-cyan font-medium">{edu.school}</p>
+                <p className="font-mono text-[12px] text-[var(--color-muted)] mt-1">
+                  {edu.year}
+                </p>
+              </div>
+            ))}
+          </div>
         </div>
       </div>
     </section>

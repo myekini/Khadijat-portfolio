@@ -4,44 +4,54 @@ import { Badge } from "@/components/ui/badge";
 
 const XP = [
   {
-    company: "Freelance QA",
-    date: "2024 – Present",
-    role: "QA Engineer",
+    company: "Waya Multi Links",
+    location: "Hybrid",
+    date: "Jan 2025 – Nov 2025",
+    role: "QA Analyst",
     bullets: [
-      "Built end-to-end <strong>Cypress test suite</strong> covering 40+ UI flows, cutting regression time by 60%.",
-      "Authored <strong>Postman + Newman</strong> API collections with 200+ assertions across REST endpoints.",
-      "Integrated GitHub Actions CI pipeline — test gates block merges on any failing spec.",
-      "Produced detailed bug reports with severity mapping, helping teams prioritise fixes faster.",
+      "Designed and executed <strong>manual and automated test cases</strong> for mobile and web-based applications, improving bug detection rate.",
+      "Planned and executed <strong>API testing</strong> using Postman and Swagger across core endpoints.",
+      "Reported and tracked bugs using <strong>Excel</strong> with detailed severity mapping and reproduction steps.",
+      "Collaborated with the engineering team to ensure timely bug fixes and quality product releases.",
     ],
-    chips: ["Cypress", "Postman", "GitHub Actions", "JIRA", "TypeScript"],
+    chips: ["Postman", "Swagger", "Manual Testing", "Excel", "API Testing"],
   },
   {
-    company: "Self-Directed Projects",
-    date: "2023 – 2024",
-    role: "QA Automation Learner",
+    company: "Trevotech Academy",
+    location: "Remote",
+    date: "Jun 2024 – Nov 2024",
+    role: "QA Intern",
     bullets: [
-      "Completed <strong>ISTQB-aligned</strong> self-study curriculum covering manual and automated testing fundamentals.",
-      "Designed and executed test plans for personal web app projects with documented test suites.",
-      "Ran <strong>JMeter load tests</strong> simulating 500 concurrent users, identified two performance bottlenecks.",
-      "Practiced exploratory testing using mind-mapping techniques and structured checklists.",
-    ],
-    chips: ["Selenium", "JMeter", "TestRail", "Manual Testing", "Python"],
-  },
-  {
-    company: "Science Education (Background)",
-    date: "2020 – 2023",
-    role: "Bioscience Educator",
-    bullets: [
-      "Applied <strong>hypothesis-driven testing mindset</strong> to lab experiments — directly transferable to QA.",
-      "Documented procedures with precision and clarity, mirroring how bug reports and test cases are written.",
-      "Managed complex multi-step workflows, teaching the same structured thinking used in CI/CD pipelines.",
-      "Built stakeholder communication skills that now translate to clear, cross-functional QA reporting.",
+      "Created <strong>test scenarios and scripts</strong> from user stories and business requirements.",
+      "Automated e-commerce websites using <strong>Cypress with Cucumber-BDD framework</strong> following Gherkin syntax.",
+      "Generated test scripts in JavaScript covering end-to-end user journeys.",
+      "Performed <strong>cross-browser testing</strong> and assisted in CI/CD integration with GitHub Actions.",
     ],
     chips: [
-      "Documentation",
-      "Root Cause Analysis",
-      "Communication",
-      "Process Design",
+      "Cypress",
+      "Cucumber BDD",
+      "GitHub Actions",
+      "JavaScript",
+      "Cross-browser",
+    ],
+  },
+  {
+    company: "Storebridger",
+    location: "Remote",
+    date: "Sep 2023 – Jan 2025",
+    role: "Junior QA Tester",
+    bullets: [
+      "Performed <strong>Manual, Ad Hoc, Monkey, and Exploratory testing</strong> on SaaS web applications.",
+      "Ensured cross-browser and cross-device compatibility on desktop and mobile devices.",
+      "Provided detailed <strong>defect/bug reports via ClickUp</strong> with descriptions, screenshots, and video recordings.",
+      "Participated in daily <strong>Agile Scrum</strong> activities and collaborated with developers on Slack and Google Meet.",
+    ],
+    chips: [
+      "ClickUp",
+      "Manual Testing",
+      "Agile/Scrum",
+      "Exploratory Testing",
+      "Mobile Testing",
     ],
   },
 ];
@@ -66,7 +76,6 @@ export default function Experience() {
     );
     els.forEach((el) => obs.observe(el));
 
-    // SVG line draw on scroll
     const timeline = sectionRef.current;
     const fill = svgFillRef.current;
     if (!timeline || !fill) return () => obs.disconnect();
@@ -85,7 +94,6 @@ export default function Experience() {
     window.addEventListener("scroll", updateLine, { passive: true });
     window.addEventListener("resize", updateLine, { passive: true });
     updateLine();
-
     return () => {
       obs.disconnect();
       window.removeEventListener("scroll", updateLine);
@@ -95,17 +103,17 @@ export default function Experience() {
 
   return (
     <section id="experience" ref={sectionRef} className="section-alt py-24">
-      <div className="max-w-[1200px] mx-auto px-10">
+      <div className="max-w-[1200px] mx-auto px-6 md:px-10">
         <p className="section-label rv">Experience</p>
         <h2
-          className="font-grotesk font-extrabold text-[clamp(32px,4vw,48px)] text-[#F1F5F9] mb-14 rv"
+          className="font-grotesk font-extrabold text-[clamp(32px,4vw,48px)] section-heading mb-14 rv"
           style={{ "--d": 1 } as React.CSSProperties}
         >
           My <em className="grad-text not-italic">Journey</em>
         </h2>
 
         <div className="relative" id="xp-timeline">
-          {/* Vertical SVG line (desktop) */}
+          {/* Vertical SVG line */}
           <div className="absolute left-1/2 top-0 bottom-0 -translate-x-1/2 w-1 z-0 hidden lg:block">
             <svg className="w-1 h-full" style={{ display: "block" }}>
               <line className="xp-svg-track" x1="2" y1="0" x2="2" y2="100%" />
@@ -129,31 +137,39 @@ export default function Experience() {
                   className={`rv relative lg:w-[calc(50%-40px)] ${isLeft ? "lg:self-start" : "lg:self-end"}`}
                   style={{ "--d": i + 1 } as React.CSSProperties}
                 >
-                  {/* Connector dot (desktop) */}
+                  {/* Connector dot */}
                   <div
-                    className={`absolute top-7 w-5 h-5 rounded-full bg-ink border-2 border-line hidden lg:flex items-center justify-center z-10
+                    className={`absolute top-7 w-5 h-5 rounded-full bg-[var(--color-bg)] border-2 border-[var(--color-line)] hidden lg:flex items-center justify-center z-10
                       ${isLeft ? "right-[-50px] translate-x-1/2" : "left-[-50px] -translate-x-1/2"}`}
                   >
                     <span className="w-2 h-2 rounded-full bg-cyan opacity-60" />
                   </div>
 
-                  <div className="bg-ink-2 border border-line rounded-[var(--r)] p-8 hover:border-[rgba(0,194,255,.3)] hover:shadow-[0_12px_40px_rgba(0,0,0,.4)] transition-all duration-200">
-                    <div className="flex items-baseline justify-between flex-wrap gap-2 mb-2">
+                  <div className="card-bg border border-[var(--color-line)] rounded-[var(--r)] p-8 hover:border-[rgba(0,194,255,.3)] hover:shadow-[0_12px_40px_rgba(0,0,0,.15)] transition-all duration-200">
+                    <div className="flex items-start justify-between flex-wrap gap-2 mb-1">
                       <span className="text-[13px] font-bold text-cyan">
                         {job.company}
                       </span>
-                      <span className="font-mono text-[11px] text-muted">
-                        {job.date}
-                      </span>
+                      <div className="flex items-center gap-2 flex-wrap">
+                        <span className="font-mono text-[11px] text-[var(--color-muted)]">
+                          {job.location}
+                        </span>
+                        <span className="font-mono text-[11px] text-[var(--color-muted)]">
+                          ·
+                        </span>
+                        <span className="font-mono text-[11px] text-[var(--color-muted)]">
+                          {job.date}
+                        </span>
+                      </div>
                     </div>
-                    <h3 className="font-grotesk text-[20px] font-bold text-[#F1F5F9] mb-4">
+                    <h3 className="font-grotesk text-[20px] font-bold section-heading mb-4">
                       {job.role}
                     </h3>
                     <ul className="flex flex-col gap-2 mb-5">
                       {job.bullets.map((b, bi) => (
                         <li
                           key={bi}
-                          className="text-sm text-dim leading-relaxed pl-4 relative before:absolute before:left-0 before:content-['—'] before:text-[rgba(0,194,255,.4)]"
+                          className="text-sm text-[var(--color-dim)] leading-relaxed pl-4 relative before:absolute before:left-0 before:content-['—'] before:text-[rgba(0,194,255,.4)]"
                           dangerouslySetInnerHTML={{ __html: b }}
                         />
                       ))}

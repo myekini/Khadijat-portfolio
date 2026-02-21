@@ -91,24 +91,24 @@ export default function About() {
               className="text-[17px] text-dim leading-[1.75] mb-5 rv"
               style={{ "--d": 2 } as React.CSSProperties}
             >
-              I'm a{" "}
+              I&apos;m a{" "}
               <strong className="text-[#F1F5F9] font-semibold">
-                QA Engineer
+                Software QA Engineer
               </strong>{" "}
-              who sits at the intersection of precision and empathy — catching
-              the bugs your users would catch, before they get the chance to. I
-              translate complex technical outcomes into plain-language bug
-              reports, and I automate the repetitive so that every release feels
-              intentional.
+              with hands-on experience in both manual and automation testing.
+              I&apos;m adept at writing test plans, executing comprehensive test
+              case documents, and skilled in automation with Postman and Cypress
+              — with a solid understanding of the SDLC and a track record of
+              managing bugs efficiently throughout their lifecycle.
             </p>
 
             <div
               className="code-comment rv"
               style={{ "--d": 3 } as React.CSSProperties}
             >
-              <span className="cc-slash">{"// "}</span>
+              <span className="cc-slash">{"//"} </span>
               <span className="cc-text">
-                {"// background: Biosciences → Teaching → QA"}
+                {"// background: Biosciences → Education → QA Engineering"}
               </span>
             </div>
 
@@ -116,26 +116,31 @@ export default function About() {
               className="text-[17px] text-dim leading-[1.75] mb-5 rv"
               style={{ "--d": 4 } as React.CSSProperties}
             >
-              My background in Biosciences taught me to run controlled
-              experiments, form hypotheses, and document findings — skills that
-              map{" "}
+              My background in{" "}
+              <strong className="text-[#F1F5F9] font-semibold">
+                Human Physiology (B.Sc., University of Ilorin)
+              </strong>{" "}
+              and{" "}
+              <strong className="text-[#F1F5F9] font-semibold">
+                Education (PGDE, Lagos State University)
+              </strong>{" "}
+              trained me to run controlled experiments, document findings with
+              precision, and communicate complex information clearly — skills
+              that map{" "}
               <strong className="text-[#F1F5F9] font-semibold">directly</strong>{" "}
-              onto software testing. Teaching sharpened my communication: I
-              explain failures clearly, write readable test reports, and make
-              technical complexity accessible to everyone on the team.
+              onto software testing and bug reporting.
             </p>
             <p
               className="text-[17px] text-dim leading-[1.75] rv"
               style={{ "--d": 5 } as React.CSSProperties}
             >
-              Currently building a{" "}
+              I&apos;ve worked across{" "}
               <strong className="text-[#F1F5F9] font-semibold">
-                4-layer QA framework
+                Waya Multi Links, Trevotech Academy, and Storebridger
               </strong>
-              : UI automation with Cypress, API validation with Postman +
-              Newman, load testing with JMeter, and CI/CD integration via GitHub
-              Actions — deployable, reproducible, and built to catch regressions
-              before they ship.
+              , delivering automated Cypress test suites, API validation with
+              Postman &amp; Newman, load testing with JMeter, and CI/CD
+              integration via GitHub Actions — all in Agile environments.
             </p>
           </div>
 

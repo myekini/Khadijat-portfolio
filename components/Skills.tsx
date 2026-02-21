@@ -16,9 +16,9 @@ const CATEGORIES = [
     title: "Automation",
     items: [
       { name: "Cypress", level: 5 },
-      { name: "Playwright", level: 3 },
-      { name: "Selenium", level: 3 },
-      { name: "TestRail", level: 4 },
+      { name: "Cucumber BDD", level: 5 },
+      { name: "Gherkin", level: 4 },
+      { name: "Mocha", level: 4 },
     ],
   },
   {
@@ -26,9 +26,9 @@ const CATEGORIES = [
     title: "API Testing",
     items: [
       { name: "Postman", level: 5 },
-      { name: "Newman", level: 4 },
-      { name: "REST API", level: 4 },
-      { name: "GraphQL", level: 3 },
+      { name: "Newman CLI", level: 5 },
+      { name: "REST APIs", level: 4 },
+      { name: "Swagger", level: 4 },
     ],
   },
   {
@@ -36,39 +36,39 @@ const CATEGORIES = [
     title: "Performance",
     items: [
       { name: "JMeter", level: 4 },
-      { name: "k6", level: 2 },
-      { name: "Gatling", level: 2 },
-      { name: "LoadRunner", level: 2 },
+      { name: "Load Testing", level: 4 },
+      { name: "Non-functional", level: 4 },
+      { name: "Smoke Testing", level: 5 },
     ],
   },
   {
     icon: GitBranch,
-    title: "CI/CD",
+    title: "CI/CD & Version Control",
     items: [
-      { name: "GitHub Actions", level: 5 },
-      { name: "Jenkins", level: 3 },
-      { name: "Docker", level: 3 },
-      { name: "CircleCI", level: 2 },
+      { name: "GitHub Actions", level: 4 },
+      { name: "Git Bash", level: 4 },
+      { name: "VS Code", level: 5 },
+      { name: "CI Integration", level: 4 },
     ],
   },
   {
     icon: Bug,
     title: "Bug Tracking",
     items: [
-      { name: "JIRA", level: 5 },
       { name: "ClickUp", level: 5 },
-      { name: "Linear", level: 3 },
-      { name: "Notion", level: 4 },
+      { name: "JIRA", level: 4 },
+      { name: "Excel", level: 4 },
+      { name: "Bug Lifecycle", level: 5 },
     ],
   },
   {
     icon: Terminal,
-    title: "Languages",
+    title: "Languages & Frameworks",
     items: [
-      { name: "TypeScript", level: 4 },
       { name: "JavaScript", level: 4 },
-      { name: "Python", level: 3 },
-      { name: "SQL", level: 3 },
+      { name: "HTML / CSS", level: 4 },
+      { name: "TypeScript", level: 3 },
+      { name: "Agile / Scrum", level: 5 },
     ],
   },
 ];
@@ -104,20 +104,20 @@ export default function Skills() {
   }, []);
 
   return (
-    <section id="skills" ref={sectionRef} className="py-24">
-      <div className="max-w-[1200px] mx-auto px-10">
+    <section id="skills" ref={sectionRef} className="py-24 section-bg">
+      <div className="max-w-[1200px] mx-auto px-6 md:px-10">
         {/* Header */}
         <div className="flex flex-wrap items-start justify-between gap-6 mb-14">
           <div>
             <p className="section-label rv">Skills &amp; Tools</p>
             <h2
-              className="font-grotesk font-extrabold text-[clamp(32px,4vw,48px)] text-[#F1F5F9] rv"
+              className="font-grotesk font-extrabold text-[clamp(32px,4vw,48px)] section-heading rv"
               style={{ "--d": 1 } as React.CSSProperties}
             >
               My <em className="grad-text not-italic">Toolkit</em>
             </h2>
           </div>
-          <div className="bg-ink-2 border border-line rounded-lg px-5 py-3 font-mono text-[13px] self-end rv">
+          <div className="card-bg border border-[var(--color-line)] rounded-lg px-5 py-3 font-mono text-[13px] self-end rv">
             <span className="sc-kw">const </span>
             <span className="sc-var">qaStack</span>
             <span className="sc-op"> = </span>
@@ -134,20 +134,20 @@ export default function Skills() {
           {CATEGORIES.map((cat, ci) => (
             <div
               key={cat.title}
-              className="rv bg-ink-2 border border-line rounded-[var(--r)] p-7 hover:border-[rgba(0,194,255,.3)] hover:shadow-[0_8px_40px_rgba(0,0,0,.3)] transition-all duration-200"
+              className="rv card-bg border border-[var(--color-line)] rounded-[var(--r)] p-7 hover:border-[rgba(0,194,255,.3)] hover:shadow-[0_8px_40px_rgba(0,0,0,.15)] transition-all duration-200"
               style={{ "--d": ci } as React.CSSProperties}
             >
               <div className="flex items-center gap-2 text-cyan text-xs font-bold uppercase tracking-[.09em] mb-5">
                 <cat.icon size={14} />
                 {cat.title}
               </div>
-              <ul className="flex flex-col divide-y divide-line">
+              <ul className="flex flex-col divide-y divide-[var(--color-line)]">
                 {cat.items.map((skill) => (
                   <li
                     key={skill.name}
                     className="flex items-center justify-between py-[11px] first:pt-0 last:pb-0"
                   >
-                    <span className="text-sm font-medium text-[#F1F5F9]">
+                    <span className="text-sm font-medium section-heading">
                       {skill.name}
                     </span>
                     <Dots level={skill.level} />
@@ -155,6 +155,28 @@ export default function Skills() {
                 ))}
               </ul>
             </div>
+          ))}
+        </div>
+
+        {/* Test types row */}
+        <div
+          className="mt-10 rv flex flex-wrap gap-2"
+          style={{ "--d": 6 } as React.CSSProperties}
+        >
+          {[
+            "Functional",
+            "Regression",
+            "Smoke",
+            "Non-functional",
+            "UI Testing",
+            "API Testing",
+            "Cross-browser",
+            "Exploratory",
+            "Ad Hoc",
+            "Manual",
+            "Automation",
+          ].map((t) => (
+            <Badge key={t}>{t}</Badge>
           ))}
         </div>
       </div>
