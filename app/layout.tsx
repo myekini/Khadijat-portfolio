@@ -19,6 +19,7 @@ const mono = JetBrains_Mono({
 });
 
 export const metadata: Metadata = {
+  metadataBase: new URL("https://myekini.github.io/Khadijat-portfolio"),
   title: "Khadijat Muhammad · QA Engineer",
   description:
     "Precision-driven QA Engineer specialising in Cypress automation, API testing, and CI/CD pipelines. Open to remote or hybrid roles.",
