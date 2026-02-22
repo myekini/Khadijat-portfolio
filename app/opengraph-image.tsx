@@ -74,15 +74,18 @@ export default function OGImage() {
               fontWeight: 600,
               letterSpacing: 3,
               textTransform: "uppercase",
+              display: "flex",
             }}
           >
             QA Engineer · Open to Remote
           </span>
         </div>
 
-        {/* Name */}
+        {/* Name — two spans stacked, no <br /> */}
         <div
           style={{
+            display: "flex",
+            flexDirection: "column",
             fontSize: 82,
             fontWeight: 800,
             color: "#f1f5f9",
@@ -91,14 +94,14 @@ export default function OGImage() {
             letterSpacing: -2,
           }}
         >
-          Khadijat
-          <br />
-          Muhammad
+          <span style={{ display: "flex" }}>Khadijat</span>
+          <span style={{ display: "flex" }}>Muhammad</span>
         </div>
 
         {/* Tagline */}
         <div
           style={{
+            display: "flex",
             fontSize: 26,
             color: "#94a3b8",
             marginBottom: 56,
@@ -106,8 +109,7 @@ export default function OGImage() {
             lineHeight: 1.4,
           }}
         >
-          The eyes between developers and users —
-          catching bugs before your users do.
+          The eyes between developers and users — catching bugs before your users do.
         </div>
 
         {/* Stats row */}
@@ -124,6 +126,7 @@ export default function OGImage() {
             >
               <span
                 style={{
+                  display: "flex",
                   fontSize: 36,
                   fontWeight: 700,
                   color: "#00c2ff",
@@ -132,7 +135,7 @@ export default function OGImage() {
               >
                 {stat.value}
               </span>
-              <span style={{ fontSize: 15, color: "#64748b" }}>
+              <span style={{ display: "flex", fontSize: 15, color: "#64748b" }}>
                 {stat.label}
               </span>
             </div>
@@ -142,6 +145,7 @@ export default function OGImage() {
         {/* Bottom right — domain */}
         <div
           style={{
+            display: "flex",
             position: "absolute",
             bottom: 48,
             right: 96,
