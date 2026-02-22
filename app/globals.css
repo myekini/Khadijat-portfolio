@@ -19,6 +19,10 @@
   --muted: #64748b;
   --dim: #94a3b8;
   --grad: linear-gradient(90deg, #00c2ff, #7c3aed);
+  --hero-bg: linear-gradient(145deg, #050910 0%, #0d0620 52%, #08040f 100%);
+  --card-shadow-sm: 0 8px 40px rgba(0, 0, 0, 0.3);
+  --card-shadow-md: 0 12px 48px rgba(0, 0, 0, 0.35);
+  --card-shadow-lg: 0 24px 80px rgba(0, 0, 0, 0.45);
   --nav-h: 72px;
   --r: 14px;
   --r-sm: 8px;
@@ -59,6 +63,10 @@
   --muted: #64748b;
   --dim: #475569;
   --grad: linear-gradient(90deg, #0284c7, #7c3aed);
+  --hero-bg: linear-gradient(145deg, #f0f7ff 0%, #f5f0ff 52%, #f8fafc 100%);
+  --card-shadow-sm: 0 8px 32px rgba(0, 0, 0, 0.08);
+  --card-shadow-md: 0 12px 40px rgba(0, 0, 0, 0.1);
+  --card-shadow-lg: 0 24px 60px rgba(0, 0, 0, 0.12);
 
   /* Semantic tokens */
   --color-bg: #f8fafc;
@@ -224,19 +232,15 @@
 }
 
 /* ── Canvas layers ─────────────────────────────────────────── */
-#cv-particles,
-#cv-matrix {
+#cv-particles {
   position: fixed;
   inset: 0;
   pointer-events: none;
   z-index: 0;
-}
-#cv-particles {
   opacity: 0.5;
 }
-#cv-matrix {
-  opacity: 0.018;
-  mix-blend-mode: screen;
+[data-theme="light"] #cv-particles {
+  opacity: 0.15;
 }
 
 /* ── Orbs ──────────────────────────────────────────────────── */
@@ -248,6 +252,9 @@
   z-index: 0;
   opacity: 0.45;
   animation: orbDrift 22s ease-in-out infinite alternate;
+}
+[data-theme="light"] .orb {
+  opacity: 0.18;
 }
 .orb-1 {
   width: 600px;
@@ -305,14 +312,11 @@
 }
 
 /* ── Experience card alternating slide ──────────────────── */
-.xp-left {
-  transform: translate(translateY(28px));
-}
 .rv.xp-left {
-  transform: translateX(-24px) translateY(0);
+  transform: translateX(-24px) translateY(28px);
 }
 .rv.xp-right {
-  transform: translateX(24px) translateY(0);
+  transform: translateX(24px) translateY(28px);
 }
 .rv.xp-left.in,
 .rv.xp-right.in {
@@ -368,7 +372,7 @@
 
 /* ── Terminal styles ───────────────────────────────────────── */
 .terminal-card {
-  background: #111827;
+  background: var(--color-card);
   border: 1px solid rgba(0, 194, 255, 0.3);
   border-radius: 16px;
   box-shadow:
@@ -378,6 +382,11 @@
   animation: float 4s ease-in-out infinite;
   position: relative;
   z-index: 1;
+}
+[data-theme="light"] .terminal-card {
+  box-shadow:
+    0 0 40px rgba(2, 132, 199, 0.1),
+    0 16px 48px rgba(0, 0, 0, 0.1);
 }
 .term-line {
   opacity: 0;
@@ -406,12 +415,12 @@
 
 /* ── Pipeline connector (SVG dash-offset) ──────────────────── */
 .pc-track {
-  stroke: #1e2d45;
+  stroke: var(--color-line);
   stroke-width: 1.5;
   stroke-dasharray: 4 4;
 }
 .pc-dash {
-  stroke: #00c2ff;
+  stroke: var(--cyan);
   stroke-width: 1.5;
   stroke-dasharray: 48;
   stroke-dashoffset: 48;
@@ -501,11 +510,11 @@
 
 /* ── Experience timeline SVG ────────────────────────────────── */
 .xp-svg-track {
-  stroke: #1e2d45;
+  stroke: var(--color-line);
   stroke-width: 2;
 }
 .xp-svg-fill {
-  stroke: #00c2ff;
+  stroke: var(--cyan);
   stroke-width: 2;
   filter: drop-shadow(0 0 6px rgba(0, 194, 255, 0.5));
 }
@@ -534,19 +543,19 @@
   color: #7c3aed;
 }
 .sc-var {
-  color: #00c2ff;
+  color: var(--cyan);
 }
 .sc-op {
   color: #64748b;
 }
 .sc-key {
-  color: #10b981;
+  color: var(--green);
 }
 .sc-str {
-  color: #f59e0b;
+  color: var(--amber);
 }
 .sc-brace {
-  color: #f1f5f9;
+  color: var(--color-fg);
 }
 
 /* ── Footer glow line ───────────────────────────────────────── */

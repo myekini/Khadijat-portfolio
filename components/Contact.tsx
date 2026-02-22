@@ -15,6 +15,9 @@ export default function Contact() {
   const [sending, setSending] = useState(false);
   const [sent, setSent] = useState(false);
   const [copiedEmail, setCopiedEmail] = useState(false);
+  const nameRef = useRef<HTMLInputElement>(null);
+  const emailRef = useRef<HTMLInputElement>(null);
+  const messageRef = useRef<HTMLTextAreaElement>(null);
 
   // Scroll reveal
   useEffect(() => {
@@ -59,12 +62,19 @@ export default function Contact() {
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
+    const name = nameRef.current?.value ?? "";
+    const email = emailRef.current?.value ?? "";
+    const message = messageRef.current?.value ?? "";
     setSending(true);
+    // Open the user's mail client with pre-filled content
+    const subject = encodeURIComponent(`QA Role Enquiry from ${name}`);
+    const body = encodeURIComponent(`Hi Khadijat,\n\n${message}\n\nFrom: ${name}\nEmail: ${email}`);
+    window.location.href = `mailto:muhammadkhadijato@gmail.com?subject=${subject}&body=${body}`;
     setTimeout(() => {
       setSending(false);
       setSent(true);
       setTimeout(() => setSent(false), 3500);
-    }, 2000);
+    }, 800);
   };
 
   const copyEmail = async () => {
@@ -82,7 +92,7 @@ export default function Contact() {
       <div className="max-w-[1200px] mx-auto px-10 relative z-10">
         <p className="section-label rv">Contact</p>
         <h2
-          className="font-grotesk font-extrabold text-[clamp(32px,4vw,48px)] text-[#F1F5F9] mb-3 rv"
+          className="font-grotesk font-extrabold text-[clamp(32px,4vw,48px)] section-heading mb-3 rv"
           style={{ "--d": 1 } as React.CSSProperties}
         >
           Let&apos;s Work <em className="grad-text not-italic">Together</em>
@@ -114,22 +124,23 @@ export default function Contact() {
             style={{ "--d": 3 } as React.CSSProperties}
           >
             <div className="flex flex-col gap-1.5">
-              <label className="text-[13px] font-semibold text-[#F1F5F9]">
+              <label className="text-[13px] font-semibold section-heading">
                 Name
               </label>
-              <Input placeholder="Your name" required />
+              <Input ref={nameRef} placeholder="Your name" required />
             </div>
             <div className="flex flex-col gap-1.5">
-              <label className="text-[13px] font-semibold text-[#F1F5F9]">
+              <label className="text-[13px] font-semibold section-heading">
                 Email
               </label>
-              <Input type="email" placeholder="your@email.com" required />
+              <Input ref={emailRef} type="email" placeholder="your@email.com" required />
             </div>
             <div className="flex flex-col gap-1.5">
-              <label className="text-[13px] font-semibold text-[#F1F5F9]">
+              <label className="text-[13px] font-semibold section-heading">
                 Message
               </label>
               <Textarea
+                ref={messageRef}
                 placeholder="Tell me about the role or project..."
                 required
               />
@@ -200,12 +211,12 @@ export default function Contact() {
                       href={item.href}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="text-sm text-[#F1F5F9] hover:text-cyan transition-colors"
+                      className="text-sm section-heading hover:text-cyan transition-colors"
                     >
                       {item.value}
                     </a>
                   ) : (
-                    <span className="text-sm text-[#F1F5F9]">{item.value}</span>
+                    <span className="text-sm section-heading">{item.value}</span>
                   )}
                 </div>
                 {item.action && (

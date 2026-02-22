@@ -24,21 +24,21 @@ const PROJECTS = [
     desc: "Full regression suite for a React e-commerce app: 80+ Cypress UI specs, 50 Postman API assertions, JMeter load tests at 500 RPS, and a GitHub Actions pipeline that blocks PRs on failure.",
     chips: ["Cypress", "Postman", "JMeter", "GitHub Actions", "TypeScript"],
     status: "complete",
-    href: "https://github.com/khadijatmuh",
+    href: "https://github.com/myekini",
   },
   {
     title: "API Contract Testing Suite",
     desc: "Newman-based contract tests for a REST API, auto-generating HTML reports on every CI run. Catches breaking changes before they reach staging.",
     chips: ["Postman", "Newman", "GitHub Actions", "JSON Schema"],
     status: "complete",
-    href: "https://github.com/khadijatmuh",
+    href: "https://github.com/myekini",
   },
   {
     title: "Bug Report Automation",
     desc: "Python script that parses Cypress JSON output and auto-files JIRA tickets with severity, steps to reproduce, and screenshot attachments.",
     chips: ["Python", "JIRA API", "Cypress", "Automation"],
     status: "wip",
-    href: "https://github.com/khadijatmuh",
+    href: "https://github.com/myekini",
   },
 ];
 
@@ -126,7 +126,7 @@ export default function Projects() {
       <div className="max-w-[1200px] mx-auto px-10">
         <p className="section-label rv">Projects</p>
         <h2
-          className="font-grotesk font-extrabold text-[clamp(32px,4vw,48px)] text-[#F1F5F9] mb-14 rv"
+          className="font-grotesk font-extrabold text-[clamp(32px,4vw,48px)] section-heading mb-14 rv"
           style={{ "--d": 1 } as React.CSSProperties}
         >
           Things I've{" "}
@@ -135,7 +135,7 @@ export default function Projects() {
 
         {/* Featured project */}
         <div
-          className="rv grid grid-cols-1 lg:grid-cols-2 bg-ink-2 border border-line rounded-[20px] overflow-hidden mb-8 hover:border-[rgba(0,194,255,.35)] hover:shadow-[0_24px_80px_rgba(0,0,0,.4)] transition-all duration-300"
+          className="rv grid grid-cols-1 lg:grid-cols-2 bg-ink-2 border border-line rounded-[20px] overflow-hidden mb-8 hover:border-[rgba(0,194,255,.35)] hover:shadow-[var(--card-shadow-lg)] transition-all duration-300"
           style={{ "--d": 2 } as React.CSSProperties}
         >
           {/* Left */}
@@ -143,18 +143,18 @@ export default function Projects() {
             <span className="font-mono text-[11px] font-bold uppercase tracking-[.1em] text-cyan">
               Featured Project
             </span>
-            <h3 className="font-grotesk text-[28px] font-extrabold text-[#F1F5F9]">
+            <h3 className="font-grotesk text-[28px] font-extrabold section-heading">
               QA Framework — Full Stack
             </h3>
             <p className="text-[15px] text-dim leading-[1.7]">
               A production-ready, 4-layer testing framework:{" "}
-              <strong className="text-[#F1F5F9]">UI automation</strong>{" "}
+              <strong className="section-heading">UI automation</strong>{" "}
               (Cypress),{" "}
-              <strong className="text-[#F1F5F9]">API validation</strong>{" "}
+              <strong className="section-heading">API validation</strong>{" "}
               (Postman/Newman),{" "}
-              <strong className="text-[#F1F5F9]">performance testing</strong>{" "}
+              <strong className="section-heading">performance testing</strong>{" "}
               (JMeter), and{" "}
-              <strong className="text-[#F1F5F9]">CI/CD integration</strong>{" "}
+              <strong className="section-heading">CI/CD integration</strong>{" "}
               (GitHub Actions) — all wired together and deployable in minutes.
             </p>
             <ul className="flex flex-col gap-2">
@@ -187,7 +187,7 @@ export default function Projects() {
               ))}
             </div>
             <a
-              href="https://github.com/khadijatmuh"
+              href="https://github.com/myekini"
               target="_blank"
               rel="noopener noreferrer"
               className="inline-flex items-center gap-2 text-sm font-semibold text-dim hover:text-cyan transition-colors mt-auto self-start"
@@ -252,11 +252,11 @@ export default function Projects() {
           {PROJECTS.map((p, i) => (
             <div
               key={p.title}
-              className="rv proj-card relative bg-ink-2 border border-line rounded-[var(--r)] p-7 flex flex-col gap-3 overflow-hidden hover:-translate-y-1.5 hover:border-[rgba(0,194,255,.3)] hover:shadow-[0_16px_60px_rgba(0,0,0,.4)] transition-all duration-200"
+              className="rv proj-card relative bg-ink-2 border border-line rounded-[var(--r)] p-7 flex flex-col gap-3 overflow-hidden hover:-translate-y-1.5 hover:border-[rgba(0,194,255,.3)] hover:shadow-[var(--card-shadow-md)] transition-all duration-200"
               style={{ "--d": i + 3 } as React.CSSProperties}
             >
               <div className="flex items-start justify-between gap-2">
-                <h3 className="font-grotesk text-[18px] font-bold text-[#F1F5F9]">
+                <h3 className="font-grotesk text-[18px] font-bold section-heading">
                   {p.title}
                 </h3>
                 <Badge

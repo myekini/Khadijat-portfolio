@@ -11,7 +11,7 @@ const buttonVariants = cva(
         default:
           "bg-grad bg-[image:var(--grad)] text-white hover:scale-[1.03] hover:shadow-[0_0_28px_rgba(0,194,255,.3)] transition-[transform,box-shadow] duration-150",
         ghost:
-          "border border-line text-dim hover:border-cyan hover:text-cyan hover:shadow-[0_0_16px_rgba(0,194,255,.15)] transition-[border-color,color,box-shadow] duration-200",
+          "border border-line text-[var(--color-fg)] hover:border-cyan hover:text-cyan hover:shadow-[0_0_16px_rgba(0,194,255,.15)] transition-[border-color,color,box-shadow] duration-200",
         hire: "bg-grad bg-[image:var(--grad)] text-white text-sm px-[22px] py-[9px] hover:scale-[1.03] hover:shadow-[0_0_20px_rgba(0,194,255,.25)] transition-[transform,box-shadow] duration-150",
         icon: "rounded-lg border border-line text-muted hover:border-cyan hover:text-cyan hover:shadow-[0_0_12px_rgba(0,194,255,.2)] transition-all duration-200",
       },

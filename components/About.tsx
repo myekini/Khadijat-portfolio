@@ -5,7 +5,7 @@ import { Card } from "@/components/ui/card";
 const STATS = [
   { num: 200, suffix: "+", label: "Test Cases Written" },
   { num: 98, suffix: "%", label: "Average Pass Rate" },
-  { num: 3, suffix: "+", label: "QA Frameworks Built" },
+  { num: 500, suffix: "+", label: "RPS Load Tested" },
   { num: 50, suffix: "+", label: "Bugs Caught in Staging" },
 ];
 
@@ -41,7 +41,7 @@ function StatCard({
     return () => obs.disconnect();
   }, [num, suffix]);
   return (
-    <Card className="border-t-2 border-t-cyan hover:border-t-purple hover:-translate-y-1 hover:shadow-[0_12px_40px_rgba(0,0,0,.3)] transition-all duration-200 p-7">
+    <Card className="border-t-2 border-t-cyan hover:border-t-purple hover:-translate-y-1 hover:shadow-[var(--card-shadow-md)] transition-all duration-200 p-7">
       <span
         ref={ref}
         className="block font-grotesk text-[42px] font-extrabold text-cyan leading-none mb-2"
@@ -81,7 +81,7 @@ export default function About() {
           <div>
             <p className="section-label rv">About Me</p>
             <h2
-              className="font-grotesk font-extrabold text-[clamp(32px,4vw,48px)] text-[#F1F5F9] mb-8 rv"
+              className="font-grotesk font-extrabold text-[clamp(32px,4vw,48px)] section-heading mb-8 rv"
               style={{ "--d": 1 } as React.CSSProperties}
             >
               I build <em className="grad-text not-italic">quality</em> into
@@ -92,7 +92,7 @@ export default function About() {
               style={{ "--d": 2 } as React.CSSProperties}
             >
               I&apos;m a{" "}
-              <strong className="text-[#F1F5F9] font-semibold">
+              <strong className="section-heading font-semibold">
                 Software QA Engineer
               </strong>{" "}
               with hands-on experience in both manual and automation testing.
@@ -108,7 +108,7 @@ export default function About() {
             >
               <span className="cc-slash">{"//"} </span>
               <span className="cc-text">
-                {"// background: Biosciences → Education → QA Engineering"}
+                {"background: Biosciences → Education → QA Engineering"}
               </span>
             </div>
 
@@ -117,17 +117,17 @@ export default function About() {
               style={{ "--d": 4 } as React.CSSProperties}
             >
               My background in{" "}
-              <strong className="text-[#F1F5F9] font-semibold">
+              <strong className="section-heading font-semibold">
                 Human Physiology (B.Sc., University of Ilorin)
               </strong>{" "}
               and{" "}
-              <strong className="text-[#F1F5F9] font-semibold">
+              <strong className="section-heading font-semibold">
                 Education (PGDE, Lagos State University)
               </strong>{" "}
               trained me to run controlled experiments, document findings with
               precision, and communicate complex information clearly — skills
               that map{" "}
-              <strong className="text-[#F1F5F9] font-semibold">directly</strong>{" "}
+              <strong className="section-heading font-semibold">directly</strong>{" "}
               onto software testing and bug reporting.
             </p>
             <p
@@ -135,7 +135,7 @@ export default function About() {
               style={{ "--d": 5 } as React.CSSProperties}
             >
               I&apos;ve worked across{" "}
-              <strong className="text-[#F1F5F9] font-semibold">
+              <strong className="section-heading font-semibold">
                 Waya Multi Links, Trevotech Academy, and Storebridger
               </strong>
               , delivering automated Cypress test suites, API validation with

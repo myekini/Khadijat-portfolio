@@ -8,7 +8,7 @@ export default function Footer() {
 
       <div className="max-w-[1200px] mx-auto px-6 md:px-10 py-8 flex items-center justify-between gap-6 flex-wrap">
         <p className="text-[13px] text-[var(--color-muted)]">
-          © 2025 Khadijat Muhammad &nbsp;·&nbsp; Built with ☕ and a passion for
+          © 2026 Khadijat Muhammad &nbsp;·&nbsp; Built with ☕ and a passion for
           quality
         </p>
 

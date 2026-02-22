@@ -6,7 +6,7 @@ const XP = [
   {
     company: "Waya Multi Links",
     location: "Hybrid",
-    date: "Jan 2025 – Nov 2025",
+    date: "Jan 2025 – Present",
     role: "QA Analyst",
     bullets: [
       "Designed and executed <strong>manual and automated test cases</strong> for mobile and web-based applications, improving bug detection rate.",
@@ -145,7 +145,7 @@ export default function Experience() {
                     <span className="w-2 h-2 rounded-full bg-cyan opacity-60" />
                   </div>
 
-                  <div className="card-bg border border-[var(--color-line)] rounded-[var(--r)] p-8 hover:border-[rgba(0,194,255,.3)] hover:shadow-[0_12px_40px_rgba(0,0,0,.15)] transition-all duration-200">
+                  <div className="card-bg border border-[var(--color-line)] rounded-[var(--r)] p-8 hover:border-[rgba(0,194,255,.3)] hover:shadow-[var(--card-shadow-md)] transition-all duration-200">
                     <div className="flex items-start justify-between flex-wrap gap-2 mb-1">
                       <span className="text-[13px] font-bold text-cyan">
                         {job.company}

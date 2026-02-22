@@ -1,6 +1,5 @@
 "use client";
 import { useEffect, useRef } from "react";
-import { Badge } from "@/components/ui/badge";
 import {
   Code2,
   Webhook,
@@ -134,7 +133,7 @@ export default function Skills() {
           {CATEGORIES.map((cat, ci) => (
             <div
               key={cat.title}
-              className="rv card-bg border border-[var(--color-line)] rounded-[var(--r)] p-7 hover:border-[rgba(0,194,255,.3)] hover:shadow-[0_8px_40px_rgba(0,0,0,.15)] transition-all duration-200"
+              className="rv card-bg border border-[var(--color-line)] rounded-[var(--r)] p-7 hover:border-[rgba(0,194,255,.3)] hover:shadow-[var(--card-shadow-sm)] transition-all duration-200"
               style={{ "--d": ci } as React.CSSProperties}
             >
               <div className="flex items-center gap-2 text-cyan text-xs font-bold uppercase tracking-[.09em] mb-5">
@@ -158,27 +157,6 @@ export default function Skills() {
           ))}
         </div>
 
-        {/* Test types row */}
-        <div
-          className="mt-10 rv flex flex-wrap gap-2"
-          style={{ "--d": 6 } as React.CSSProperties}
-        >
-          {[
-            "Functional",
-            "Regression",
-            "Smoke",
-            "Non-functional",
-            "UI Testing",
-            "API Testing",
-            "Cross-browser",
-            "Exploratory",
-            "Ad Hoc",
-            "Manual",
-            "Automation",
-          ].map((t) => (
-            <Badge key={t}>{t}</Badge>
-          ))}
-        </div>
       </div>
     </section>
   );

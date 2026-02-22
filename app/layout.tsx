@@ -21,19 +21,33 @@ const mono = JetBrains_Mono({
 export const metadata: Metadata = {
   title: "Khadijat Muhammad · QA Engineer",
   description:
-    "Precision-driven QA Engineer specialising in Cypress automation, API testing, and CI/CD pipelines. Open to remote roles.",
+    "Precision-driven QA Engineer specialising in Cypress automation, API testing, and CI/CD pipelines. Open to remote or hybrid roles.",
   keywords: [
     "QA Engineer",
     "Automation Tester",
     "Cypress",
     "Postman",
+    "JMeter",
+    "GitHub Actions",
     "JIRA",
     "Software Testing",
+    "Test Automation",
+    "Lagos Nigeria",
   ],
+  authors: [{ name: "Khadijat Muhammad" }],
   openGraph: {
     title: "Khadijat Muhammad · QA Engineer",
-    description: "The eyes between developers and users.",
+    description:
+      "The eyes between developers and users. 200+ test cases, 98% pass rate, CI/CD automation expert.",
     type: "website",
+    locale: "en_US",
+    siteName: "Khadijat Muhammad Portfolio",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Khadijat Muhammad · QA Engineer",
+    description:
+      "The eyes between developers and users. 200+ test cases, 98% pass rate, CI/CD automation expert.",
   },
 };
 
@@ -45,6 +59,7 @@ export default function RootLayout({
   return (
     <html
       lang="en"
+      data-theme="light"
       className={`${grotesk.variable} ${inter.variable} ${mono.variable}`}
     >
       <body>{children}</body>

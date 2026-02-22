@@ -10,7 +10,7 @@ const CERTS = [
     year: "2024",
     detail:
       "Software Testing, Functional & Non-functional Testing, SDLC, STLC, Test Case Development.",
-    verify: "https://www.coursera.org",
+    verify: null,
   },
   {
     icon: Zap,
@@ -67,7 +67,7 @@ export default function Certifications() {
           {CERTS.map((cert, i) => (
             <div
               key={cert.name}
-              className="rv cert-card relative card-bg border border-[var(--color-line)] rounded-[var(--r)] p-8 flex flex-col gap-4 overflow-hidden hover:-translate-y-1.5 hover:border-[rgba(0,194,255,.4)] hover:shadow-[0_20px_60px_rgba(0,0,0,.2)] transition-all duration-300"
+              className="rv cert-card relative card-bg border border-[var(--color-line)] rounded-[var(--r)] p-8 flex flex-col gap-4 overflow-hidden hover:-translate-y-1.5 hover:border-[rgba(0,194,255,.4)] hover:shadow-[var(--card-shadow-md)] transition-all duration-300"
               style={{ "--d": i + 2 } as React.CSSProperties}
             >
               {/* Holographic shimmer */}

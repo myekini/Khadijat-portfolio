@@ -1,14 +1,41 @@
 "use client";
 import { useEffect, useRef, useState } from "react";
 import { Button } from "@/components/ui/button";
-import { Code2, Webhook, Github, Activity, CheckSquare } from "lucide-react";
+
+// Brand SVG logos for tool icons — real logos, not generic Lucide icons
+const CypressIcon = () => (
+  <svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor">
+    <path d="M11.998 0C5.366 0 0 5.367 0 12c0 6.634 5.366 12 11.998 12C18.633 24 24 18.634 24 12c0-6.633-5.367-12-12.002-12zM6.37 14.575c.392.523.916.742 1.544.742.35 0 .74-.074 1.063-.26l1.283 1.963c-.609.392-1.567.653-2.391.653-2.695 0-4.588-1.893-4.588-4.641 0-2.74 1.893-4.641 4.588-4.641.824 0 1.782.26 2.391.652L9.977 10.046c-.323-.185-.713-.26-1.063-.26-.628 0-1.152.218-1.544.742-.35.477-.523 1.108-.523 1.472 0 .364.173.993.523 1.575zm11.27 1.588c0 2.5-1.5 3.64-3.9 3.64-1.566 0-2.717-.436-3.544-1.262l1.458-1.457c.346.436.87.653 1.587.653.697 0 1.13-.26 1.13-.956v-6.24h2.27v5.622z"/>
+  </svg>
+);
+const PostmanIcon = () => (
+  <svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor">
+    <path d="M13.527.099C6.955-.744.942 3.9.099 10.473c-.843 6.572 3.8 12.584 10.373 13.428 6.573.843 12.587-3.801 13.428-10.374C24.744 6.955 20.101.943 13.527.099zm2.471 7.485a.855.855 0 0 0-.593.25l-4.453 4.453-.307-.307-.643-.643c4.389-4.376 5.18-4.418 5.996-3.753zm-4.863 4.861l4.44-4.44a.62.62 0 1 1 .847.903l-4.699 3.844-.588-.307zm.33.532l-1.032-.534 4.083-4.083.223.223zM8.766 12.3c.06 0 4.695 4.72 4.695 4.72l-1.731.22-3.13-3.434.166-1.506zm-1.962 5.275a.158.158 0 0 1-.024-.025l-.006-.007a3.044 3.044 0 0 1-.477-1.445l1.961-1.806 1.592 1.75-3.046 1.533zm3.637-.637l-.185-.204 1.65-.209.02.018-1.485.395zm1.96-.52l-.482-.528.002-.002.48.53zm.586-.155l-2.218-2.435 4.778-3.908.207.205-2.767 6.138z"/>
+  </svg>
+);
+const GitHubActionsIcon = () => (
+  <svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor">
+    <path d="M10.984 13.836a.5.5 0 0 1-.353-.146l-3.819-3.819a.5.5 0 1 1 .706-.706l3.466 3.466 6.35-6.35a.5.5 0 1 1 .707.707l-6.704 6.703a.5.5 0 0 1-.353.145Z"/>
+    <path d="M12 0C5.373 0 0 5.373 0 12s5.373 12 12 12 12-5.373 12-12S18.627 0 12 0zm0 22C6.486 22 2 17.514 2 12S6.486 2 12 2s10 4.486 10 10-4.486 10-10 10z"/>
+  </svg>
+);
+const JMeterIcon = () => (
+  <svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor">
+    <path d="M12 0C5.373 0 0 5.373 0 12s5.373 12 12 12 12-5.373 12-12S18.627 0 12 0zm0 2a10 10 0 1 1 0 20A10 10 0 0 1 12 2zm-1 5v6l5 3-1 1.73-6-3.5V7h2z"/>
+  </svg>
+);
+const ClickUpIcon = () => (
+  <svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor">
+    <path d="M.7 17.39l2.63-2.02c1.73 2.25 3.5 3.28 5.53 3.28 2.01 0 3.74-1.01 5.44-3.25l2.65 1.99C14.59 20.5 11.9 22 8.86 22 5.84 22 3.1 20.52.7 17.39zM8.85 2l6.65 5.96-1.8 2-4.85-4.35L3.99 9.96l-1.8-2L8.85 2z"/>
+  </svg>
+);
 
 const TOOLS = [
-  { icon: Code2, label: "Cypress" },
-  { icon: Webhook, label: "Postman" },
-  { icon: Github, label: "GitHub Actions" },
-  { icon: Activity, label: "JMeter" },
-  { icon: CheckSquare, label: "ClickUp" },
+  { icon: CypressIcon, label: "Cypress" },
+  { icon: PostmanIcon, label: "Postman" },
+  { icon: GitHubActionsIcon, label: "GitHub Actions" },
+  { icon: JMeterIcon, label: "JMeter" },
+  { icon: ClickUpIcon, label: "ClickUp" },
 ];
 
 const TERM_LINES = [
@@ -35,7 +62,6 @@ const MARQUEE = [
 
 export default function Hero() {
   const cvpRef = useRef<HTMLCanvasElement>(null);
-  const cvmRef = useRef<HTMLCanvasElement>(null);
   const [wordsIn, setWordsIn] = useState(false);
   const [subIn, setSubIn] = useState(false);
   const [capIn, setCapIn] = useState(false);
@@ -57,7 +83,7 @@ export default function Hero() {
     show: false,
   });
 
-  // ── Particle Canvas ───────────────────────────────────────
+  // ── Particle Canvas (pauses when hero scrolls out of view) ───────────────────────────────────────
   useEffect(() => {
     const canvas = cvpRef.current;
     if (!canvas) return;
@@ -73,7 +99,9 @@ export default function Hero() {
       a: Math.random() * 0.4 + 0.06,
     }));
     let id: number;
+    let active = true;
     const draw = () => {
+      if (!active) return;
       ctx.clearRect(0, 0, canvas.width, canvas.height);
       for (const p of pts) {
         ctx.beginPath();
@@ -89,61 +117,32 @@ export default function Hero() {
       id = requestAnimationFrame(draw);
     };
     draw();
+    // Pause when hero section is not visible
+    const heroSection = canvas.closest("section");
+    const visObs = heroSection
+      ? new IntersectionObserver(
+          ([e]) => {
+            if (e.isIntersecting) {
+              active = true;
+              draw();
+            } else {
+              active = false;
+              cancelAnimationFrame(id);
+            }
+          },
+          { threshold: 0 },
+        )
+      : null;
+    if (heroSection && visObs) visObs.observe(heroSection);
     const resize = () => {
       canvas.width = window.innerWidth;
       canvas.height = window.innerHeight;
     };
     window.addEventListener("resize", resize, { passive: true });
     return () => {
+      active = false;
       cancelAnimationFrame(id);
-      window.removeEventListener("resize", resize);
-    };
-  }, []);
-
-  // ── Matrix Canvas ─────────────────────────────────────────
-  useEffect(() => {
-    const canvas = cvmRef.current;
-    if (!canvas) return;
-    const ctx = canvas.getContext("2d")!;
-    const CHARS = "01{}[]()<>/*+-=!?;:.@#&%";
-    const init = () => {
-      canvas.width = window.innerWidth;
-      canvas.height = window.innerHeight;
-      return Array.from({ length: Math.floor(canvas.width / 18) }, () => ({
-        x: Math.random() * canvas.width,
-        y: Math.random() * -canvas.height,
-        vy: Math.random() * 0.4 + 0.1,
-        chr: CHARS[Math.floor(Math.random() * CHARS.length)],
-        tick: 0,
-        interval: Math.floor(Math.random() * 40 + 20),
-      }));
-    };
-    let cols = init(),
-      id2: number;
-    const draw = () => {
-      ctx.clearRect(0, 0, canvas.width, canvas.height);
-      ctx.font = '13px "JetBrains Mono",monospace';
-      ctx.fillStyle = "rgba(0,194,255,1)";
-      for (const c of cols) {
-        ctx.fillText(c.chr, c.x, c.y);
-        c.y += c.vy;
-        c.tick++;
-        if (c.tick % c.interval === 0)
-          c.chr = CHARS[Math.floor(Math.random() * CHARS.length)];
-        if (c.y > canvas.height + 20) {
-          c.y = Math.random() * -200;
-          c.x = Math.random() * canvas.width;
-        }
-      }
-      id2 = requestAnimationFrame(draw);
-    };
-    draw();
-    const resize = () => {
-      cols = init();
-    };
-    window.addEventListener("resize", resize, { passive: true });
-    return () => {
-      cancelAnimationFrame(id2);
+      visObs?.disconnect();
       window.removeEventListener("resize", resize);
     };
   }, []);
@@ -183,22 +182,23 @@ export default function Hero() {
     };
   }, []);
 
-  const WORDS = [
+  // Headline split into two clear lines
+  const LINE1 = [
     { text: "The", wi: 0 },
     { text: "eyes", wi: 1, grad: true },
     { text: "between", wi: 2 },
-    { text: "the developers", wi: 3 },
-    { text: "and users.", wi: 4 },
+  ];
+  const LINE2 = [
+    { text: "developers", wi: 3 },
+    { text: "and", wi: 4 },
+    { text: "users.", wi: 5 },
   ];
 
   return (
     <section
       id="hero"
       className="relative min-h-screen flex flex-col justify-center pt-[72px] overflow-hidden"
-      style={{
-        background:
-          "linear-gradient(145deg,#050910 0%,#0D0620 52%,#08040F 100%)",
-      }}
+      style={{ background: "var(--hero-bg)" }}
     >
       {/* Canvas + orbs + noise */}
       <canvas
@@ -206,12 +206,6 @@ export default function Hero() {
         id="cv-particles"
         aria-hidden="true"
         style={{ opacity: 0.5 }}
-      />
-      <canvas
-        ref={cvmRef}
-        id="cv-matrix"
-        aria-hidden="true"
-        style={{ opacity: 0.018, mixBlendMode: "screen" }}
       />
       <div className="orb orb-1" aria-hidden="true" />
       <div className="orb orb-2" aria-hidden="true" />
@@ -232,16 +226,12 @@ export default function Hero() {
               ✦ Available for QA Roles
             </div>
 
-            {/* Headline */}
-            <h1 className="font-grotesk font-extrabold text-[clamp(48px,6.5vw,76px)] text-[#F1F5F9] leading-[1.05] mb-6">
-              {WORDS.map((w, i) => (
-                <span
-                  key={i}
-                  className="line-wrap"
-                  style={i === 0 || i === 2 ? {} : { display: "inline" }}
-                >
-                  {i === 2 && <span className="line-wrap" />}
+            {/* Headline — two clean lines */}
+            <h1 className="font-grotesk font-extrabold text-[clamp(48px,6.5vw,76px)] section-heading leading-[1.05] mb-6">
+              <span className="line-wrap block">
+                {LINE1.map((w) => (
                   <span
+                    key={w.wi}
                     className={`h1-word${wordsIn ? " in" : ""}`}
                     style={{ "--wi": w.wi } as React.CSSProperties}
                   >
@@ -251,8 +241,19 @@ export default function Hero() {
                       w.text
                     )}
                   </span>
-                </span>
-              ))}
+                ))}
+              </span>
+              <span className="line-wrap block">
+                {LINE2.map((w) => (
+                  <span
+                    key={w.wi}
+                    className={`h1-word${wordsIn ? " in" : ""}`}
+                    style={{ "--wi": w.wi } as React.CSSProperties}
+                  >
+                    {w.text}
+                  </span>
+                ))}
+              </span>
             </h1>
 
             {/* Sub + caption */}
@@ -276,7 +277,8 @@ export default function Hero() {
                 <a href="#projects">View My Projects →</a>
               </Button>
               <Button asChild variant="ghost">
-                <a href="/resume.pdf" download>
+                {/* Replace /resume.pdf with your actual resume file in /public */}
+                <a href="/resume.pdf" download="Khadijat_Muhammad_QA_Resume.pdf">
                   Download Resume ↓
                 </a>
               </Button>
@@ -310,7 +312,7 @@ export default function Hero() {
                       setTooltip((p) => ({ ...p, show: false }))
                     }
                   >
-                    <t.icon size={18} />
+                    <t.icon />
                   </button>
                 </div>
               ))}
@@ -321,7 +323,7 @@ export default function Hero() {
           <div className="relative hidden lg:block">
             <div className="terminal-card">
               {/* Traffic lights */}
-              <div className="flex items-center gap-[7px] px-5 py-[14px] bg-[rgba(255,255,255,.03)] border-b border-line">
+              <div className="flex items-center gap-[7px] px-5 py-[14px] bg-ink-3 border-b border-line">
                 <span className="w-3 h-3 rounded-full bg-[#ff5f56]" />
                 <span className="w-3 h-3 rounded-full bg-[#ffbd2e]" />
                 <span className="w-3 h-3 rounded-full bg-[#27c93f]" />
@@ -339,7 +341,7 @@ export default function Hero() {
                     <span className="text-green font-bold flex-shrink-0">
                       ✓
                     </span>
-                    <span className="flex-1 text-[#F1F5F9]">{l.name}</span>
+                    <span className="flex-1 section-heading">{l.name}</span>
                     <span className="text-muted">{l.ms}</span>
                   </div>
                 ))}
@@ -369,7 +371,7 @@ export default function Hero() {
             </div>
             {/* Floating stat chips */}
             <div
-              className="absolute -bottom-5 -left-7 bg-[rgba(26,34,53,.9)] border border-line rounded-xl px-4 py-3 backdrop-blur-md animate-float shadow-xl"
+              className="absolute -bottom-5 -left-7 bg-ink-2 border border-line rounded-xl px-4 py-3 backdrop-blur-md animate-float shadow-xl"
               style={{ animationDelay: "-2s" }}
             >
               <div className="font-grotesk text-[22px] font-extrabold text-cyan">
@@ -378,7 +380,7 @@ export default function Hero() {
               <div className="text-[11px] text-dim">Pass Rate</div>
             </div>
             <div
-              className="absolute -top-4 -right-6 bg-[rgba(26,34,53,.9)] border border-line rounded-xl px-4 py-3 backdrop-blur-md animate-float shadow-xl"
+              className="absolute -top-4 -right-6 bg-ink-2 border border-line rounded-xl px-4 py-3 backdrop-blur-md animate-float shadow-xl"
               style={{ animationDelay: "-1s" }}
             >
               <div className="font-grotesk text-[22px] font-extrabold text-cyan">
@@ -408,7 +410,7 @@ export default function Hero() {
       {tooltip.show && (
         <div
           role="tooltip"
-          className="fixed z-[9999] pointer-events-none bg-ink-3 border border-line text-[#F1F5F9] text-xs font-semibold px-3 py-1 rounded-lg font-mono shadow-xl transition-opacity duration-150"
+          className="fixed z-[9999] pointer-events-none bg-ink-3 border border-line section-heading text-xs font-semibold px-3 py-1 rounded-lg font-mono shadow-xl transition-opacity duration-150"
           style={{
             left: tooltip.x,
             top: tooltip.y,

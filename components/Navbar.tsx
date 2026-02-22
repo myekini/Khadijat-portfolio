@@ -15,15 +15,12 @@ const links = [
 export default function Navbar() {
   const [scrolled, setScrolled] = useState(false);
   const [open, setOpen] = useState(false);
-  const [dark, setDark] = useState(true);
+  const [dark, setDark] = useState(false);
 
   // Initialise from localStorage
   useEffect(() => {
     const saved = localStorage.getItem("theme");
-    const prefersDark = window.matchMedia(
-      "(prefers-color-scheme: dark)",
-    ).matches;
-    const isDark = saved ? saved === "dark" : prefersDark;
+    const isDark = saved ? saved === "dark" : false;
     setDark(isDark);
     document.documentElement.setAttribute(
       "data-theme",
